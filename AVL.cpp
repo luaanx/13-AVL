@@ -178,7 +178,7 @@ NO* insereArvore(NO* no, int valor)
 		return no;
 	}
 
-	// atualiza a altura do no (lembre-se que esta é função recursiva)
+	// atualiza a altura do no (lembre-se que esta Ã© funÃ§Ã£o recursiva)
 
 	no->altura = max(alturaNo(no->esq), alturaNo(no->dir)) + 1;
 
@@ -204,16 +204,30 @@ NO* insereArvore(NO* no, int valor)
 
 }
 
-NO* girarDireita(NO* no)
+NO* girarDireita(NO* r)
 {
-	// sua implementação vai aqui
-	return no;
+	NO *y, *f;
+	y =r->esq;
+	f = y->dir;
+
+	y->dir =r;
+	r->esq= f;
+	r->altura = max(alturaNo(r->esq), alturaNo(r->dir)) + 1;
+	y->altura = max(alturaNo(y->esq), alturaNo(y->dir)) + 1;
+	return y;
 }
 
-NO* girarEsquerda(NO* no)
+NO* girarEsquerda(NO* r)
 {
-	// sua implementação vai aqui
-	return no;
+	NO* y, * f;
+	y = r->dir;
+	f = y->esq;
+
+	y->esq = r;
+	r->dir = f;
+	r->altura = max(alturaNo(r->esq), alturaNo(r->dir)) + 1;
+	y->altura = max(alturaNo(y->esq), alturaNo(y->dir)) + 1;
+	return y;
 }
 
 int elementosArvore(NO* no)
